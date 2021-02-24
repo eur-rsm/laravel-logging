@@ -1,6 +1,6 @@
 <?php
 
-namespace EUR\RSM\LaravelLogging\LaravelLogging;
+namespace EUR\RSM\LaravelLogging;
 
 use Illuminate\Support\ServiceProvider;
 

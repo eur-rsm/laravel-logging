@@ -8,7 +8,7 @@ return [
     */
     'processors' => [
         \Monolog\Processor\WebProcessor::class,
-        \EurLib\LaravelEcsLogging\Processor\AuthenticationProcessor::class,
-        \EurLib\LaravelEcsLogging\Processor\RequestProcessor::class,
+        \EUR\RSM\LaravelLogging\Processor\AuthenticationProcessor::class,
+        \EUR\RSM\LaravelLogging\Processor\RequestProcessor::class,
     ],
 ];

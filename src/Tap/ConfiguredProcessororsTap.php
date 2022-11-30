@@ -17,7 +17,7 @@ class ConfiguredProcessororsTap
     public function __invoke($logger): void
     {
         foreach (config('laravel-logging.processors') ?? [] as $processor) {
-            $logger->pushProcessor(app($processor, [$handler]));
+            $logger->pushProcessor(app($processor, [$logger]));
         }
     }
 }

@@ -3,6 +3,7 @@
 namespace EUR\RSM\LaravelLogging\Processor;
 
 use Illuminate\Contracts\Auth\Authenticatable;
+use Monolog\LogRecord;
 use Monolog\Processor\ProcessorInterface;
 
 /**
@@ -10,17 +11,14 @@ use Monolog\Processor\ProcessorInterface;
  */
 class AuthenticationProcessor implements ProcessorInterface
 {
-    /** @var \Illuminate\Contracts\Auth\Authenticatable */
-    protected $user;
-
-    public function __construct(?Authenticatable $user = null)
+    public function __construct(protected ?Authenticatable $user = null)
     {
-        $this->user = $user ?? auth()->user();
+        $this->user ??= auth()->user();
     }
 
-    public function __invoke(array $record): array
+    public function __invoke(LogRecord $record): LogRecord
     {
-        $record['extra'] = $this->appendUserData($record['extra']);
+        $record->extra = $this->appendUserData($record->extra);
 
         return $record;
     }

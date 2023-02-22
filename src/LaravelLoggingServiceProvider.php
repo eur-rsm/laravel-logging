@@ -6,12 +6,6 @@ use Illuminate\Support\ServiceProvider;
 
 class LaravelLoggingServiceProvider extends ServiceProvider
 {
-    /** @var bool */
-    protected $defer = false;
-
-    /**
-     * @return void
-     */
     public function boot(): void
     {
         $this->publishes([
@@ -19,9 +13,6 @@ class LaravelLoggingServiceProvider extends ServiceProvider
         ]);
     }
 
-    /**
-     * @return void
-     */
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/laravel-logging.php', 'laravel-logging');

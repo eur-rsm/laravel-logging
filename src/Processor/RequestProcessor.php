@@ -3,6 +3,7 @@
 namespace EUR\RSM\LaravelLogging\Processor;
 
 use Illuminate\Http\Request;
+use Monolog\LogRecord;
 use Monolog\Processor\ProcessorInterface;
 
 /**
@@ -10,18 +11,15 @@ use Monolog\Processor\ProcessorInterface;
  */
 class RequestProcessor implements ProcessorInterface
 {
-    /** @var \Illuminate\Http\Request */
-    protected $request;
-
-    public function __construct(?Request $request = null)
+    public function __construct(protected ?Request $request = null)
     {
-        $this->request = $request ?? request();
+        $this->request ??= request();
     }
-    
-    public function __invoke(array $record): array
+
+    public function __invoke(LogRecord $record)
     {
-        $record['extra'] = $this->appendRequestData($record['extra']);
-        $record['extra'] = $this->appendClientData($record['extra']);
+        $record->extra = $this->appendRequestData($record->extra);
+        $record->extra = $this->appendClientData($record->extra);
 
         return $record;
     }

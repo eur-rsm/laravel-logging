@@ -2,10 +2,6 @@
 
 namespace EUR\RSM\LaravelLogging\Tap;
 
-use EUR\RSM\LaravelLogging\Formatter\ElasticCommonSchemaFormatter;
-use Monolog\Handler\StreamHandler;
-use Monolog\Processor\IntrospectionProcessor;
-
 class ConfiguredProcessororsTap
 {
     /**
